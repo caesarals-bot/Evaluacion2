@@ -12,16 +12,42 @@
     
 </head>
 <body>
-  
-    <header class="text-center p-3">
-        <h1>Evaluacion</h1>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown
+                  </a>
+      
+                </li>
+      
+              </ul>
+            </div>
+          </div>
+        </nav>
     </header>
+  
+    <div class="text-center p-3">
+        <h1>Evaluacion</h1>
+    </div>
 
-    <section class="container d-flex  bd-highlight mt-4">
-
+    <section class="container d-flex  bd-highlight mt-4" id="table">
 
       <div class="col-6 p-2">
-        <h2>Stock de productos disponibles</h2>
+        <h2>Stock de productos </h2>
         <table class="table table-dark table-hover">
         
           <thead>
@@ -33,28 +59,8 @@
               <th scope="col">Precio</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>Otto</td>
-              <td>Otto</td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>Otto</td>
-              <td>Otto</td>
-            </tr>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>Otto</td>
-              <td>Otto</td>
-            </tr>
+          <tbody id="ingresoProduto">
+            
           </tbody>
         </table>
       </div>
@@ -97,24 +103,75 @@
             </tbody>
         </table>
       </div>
-    </section>
-    <section class="container d-flex  bd-highlight mt-4">
-        <form class="p-2 col-6 ">
 
-            <h2>Ventas</h2>
-            <div class="mb-3">
-                <label for="productosVentas" class="form-label">Ingrese Productos</label>
-                <input type="text" name="productosVenta" id="productosVenta" class="form-control" placeholder="Productos">
-            </div>
-            <div class="mb-3">
-                <label for="cantidadVenta" class="form-label">Cantidad Vendidas</label>
-                <input type="text" name="cantidadVenta" id="cantidadVenta" class="form-control" placeholder="Cantidad">
-            </div>
+    </section>
+
+    <section class="container d-flex  bd-highlight mt-4" id="form">
+      
+        <form class="p-2 col-6 " id="formulario">
+            <h2 class="">Nueva venta</h2>
+            <div class="d-flex">
+              <div class="col-4 p-2">
+                <div class="mb-3">
+                  <label for="newproducto" class="form-label">Nombre Producto</label>
+                  <input type="text" required name="newproducto" class="form-control" id="newproducto"   >
+                </div>
+                <div class="mb-3">
+                  <label for="rut" class="form-label">Rut Cliente</label>
+                  <input type="text" required name="rut" class="form-control" id="rut" aria-describedby="rut"  >
+                </div>
+                <div class="mb-3">
+                  <label for="fecha" class="form-label">Fecha (DD/MM/YYYY)</label>
+                  <input type="text" name="fecha" class="form-control" id="fecha" required>
+                </div>
+              </div>
+              <div class="col-8 p-2">
+                <div class="mb-3">
+                  <label for="unidades" class="form-label">Unidades</label>
+                  <input type="number" name="unidades" class="form-control" id="unidades" required>
+                </div>
               
-              
-              <button type="submit" class="btn btn-primary">Ventas</button>
+                <div class="mb-3">
+                    <label for="nombreCliente" class="form-label">Nombre Cliente</label>
+                    <input type="text" name="nombreCliente" class="form-control" id="nombreCliente">
+                </div>
+                <div >
+                  <!-- <p class="formulario__mensaje bg-danger text-white p-1 text-center mb-1" id="formulario__mensaje"><i class="fas fa-exclamation-triangle"></i>
+                      <b>Error:</b>Por favor rellene el formulario correctamente.
+                  </p> -->
+                </div>
+                <button type="button" id="agregar" class="btn btn-primary">Submit</button>
+                <div class="formulario__grupo  ">
+                  <!-- <p class="formulario__mensaje-exito bg-success text-white mt-2 p-1 text-center" id="formulario__mensaje-exito">
+                      ¡Formulario enviado exitosamente!
+                  </p>-->
+                </div>
+              </div>
+            </div>
+          
         </form>
-        
+
+        <div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="card bg-primary">
+                <div class="card-body" id="card-uno">
+                  <h5 class="card-title text-white">Cantidad de ventas</h5>
+                  <p class="card-text text-center text-white">0</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="card bg-success">
+                <div class="card-body" id="card-dos">
+                  <h5 class="card-title text-white">Total ventas acumulado $</h5>
+                  <p class="card-text text-center text-white">$ 0</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
         
     </section>
 
