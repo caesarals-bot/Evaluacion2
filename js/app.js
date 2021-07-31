@@ -42,11 +42,17 @@ const stock = [
 ];
 
 btnIngresa.click( function () {
+  
+  crearVenta();
+  
+});
+/*
+btnIngresa.click( function () {
   console.log(btnIngresa);
   crearVenta();
   
 });
-
+*/
 function ingresarProductos(){
     var html = ''
 
@@ -60,7 +66,7 @@ function ingresarProductos(){
         html += '</tr>';
     }
     ingresoProduto.html(html);
-    console.log(html);
+  
 };
 
 ingresarProductos();
@@ -85,7 +91,7 @@ function crearVenta() {
   //se llena la lista de productos
   ventas.push(venta);
   //se imprime la venta en la tabla
-  console.log(ventas);
+  
   
   imprimirVentas()
 /*
@@ -105,12 +111,16 @@ function imprimirVentas() {
   let html = "";
 
   /*iterar sobre el arreglo*/
+  
   let idVenta = 0;
   total = 0;
 
   for (let i = 0; i < ventas.length; i++) {
+      let precio = parseInt(costeProductos(ventas[i].producto));
+      let cantidad = parseInt(ventas[i].cantidad);
       idVenta += 1;
-      html += "<tr> <th>" + idVenta + "</th> <td>" + ventas[i].producto + "</td> <td>" + ventas[i].cantidad + "</td> <td>" + ventas[i].cliente + "</td> <td>" + '$' + "</td> </tr>";
+      html += 
+        "<tr> <th>" + idVenta + "</th> <td>" + ventas[i].producto + "</td> <td>" + ventas[i].cantidad + "</td> <td>" + ventas[i].cliente + "</td> <td>" + '$ ' + precio * cantidad + "</td> </tr>";
 
       //sumarVentas(listaVentas[i].precio)     
   }
@@ -119,30 +129,22 @@ function imprimirVentas() {
   imprimeVenta.html(html);
 
 }
-
+// Accediendo a la api
 function requetsUF() {
 
   var req = new XMLHttpRequest();
 
   req.onreadystatechange = function () {
       if(req.readyState === 4 && req.status === 200){
-          console.log(req.responseText);
+          
           var responseJSON = JSON.parse(req.responseText);
-          console.log(responseJSON);
-
-          
+  
           var res = responseJSON.UFs[0].Valor;//dos datos fecha y valor
-          var mostrarValor = $('#mostrarValor');
-          
-          console.log(res);
-         
-
+   
           //formateamos el valor de la uf
           
           var numero = res.replace('.', '');
           numero = numero.replace(',', '.');
-
-          console.log(numero);
 
           mostrarUf.html(numero);
           
@@ -154,6 +156,21 @@ function requetsUF() {
 }
 
 requetsUF()
+
+$( function() {
+  $( "#fechaVenta" ).datepicker();
+} );
+
+function costeProductos(nombre) {
+  for(let i = 0; i < stock.length; i++ ){
+    if(nombre == stock[i].producto){
+      
+      return stock[i].Precio;
+    }
+    console.log('funciona')
+  }
+}
+
 /*
 
 function Productos(nombre, cantidad) {
